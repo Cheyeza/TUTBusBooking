@@ -10,7 +10,7 @@
     $bookingId = $_POST['bookingId'];
     if (!isset($bookingId))
     {
-        header("Location: Home.php");
+        header("Location: bookings.php");
     }
     include 'connect.php';
 
@@ -22,7 +22,7 @@
 
     if ($conn->query($sql) === TRUE) {
         echo "Record deleted successfully";
-        header("Location: Home.php");
+        header("Location: bookings.php");
       } else {
         echo "Error deleting record: " . $conn->error;
       }
