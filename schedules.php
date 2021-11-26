@@ -1,6 +1,7 @@
 <?php
 
 if (session_status()!==PHP_SESSION_ACTIVE)session_start();
+$_SESSION['booking_error'] = null;
 if (!isset($_SESSION['studNo']))
     {
         header("Location: index.php");
@@ -13,7 +14,7 @@ $time = $_POST['time'];*/
 
 $campusId = $_POST['location'];
 if(!isset($campusId)){
-    header("Location: bookings.php");
+    header("Location: new_booking.php");
 }
 
 
@@ -39,11 +40,16 @@ and destination='$campusName' and time='$time' and c.campusId='$campusId' ";*/
     
         <div class="back">
 <div class="div-center">
+<div  class="page_heading">
+      <div class="container">
 
+          <h2 class="text-center">Destination</h2>
+      </div>
+</div>
 
 
         <div class="container align-items-center" style="width: 50%">
-        <h2 class="text-center shadow-sm form-heading" style="font-family: Asap, sans-serif;font-weight: normal;color: rgb(240,62,51);">Booking Form &nbsp;</h2>
+
         <h1 style="font-size: 16px;font-family: Asap, sans-serif;color: rgb(240,62,51);font-style: italic;">Select Your Trip Destination And Time</h1>
         <?php
 $query = "select * from view_schedule where location = $campusId and time > NOW() order by time";
@@ -74,8 +80,11 @@ $row_cnt = mysqli_num_rows($result);
                
     </select>
 <br>
+<div class="col-md-10 text-center ">
     <button type="submit" class="btn btn-primary">Next</button>  
+            </div>
         </form>
          </div></div></div>
+         <?php include 'footer_fixed.html'; ?>
         </body>
 </html> 
