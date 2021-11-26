@@ -25,14 +25,14 @@ $_SESSION['reg_error'] = null;
 
 <div class="container align-items-center" style="width: 50%">
 
-<nav class="navbar navbar-light navbar-expand-md fixed-top shadow navigation-clean" style="background-color: rgb(237,14,0);color: rgb(255,255,255);opacity: 0.80;">
+
      <form action="process_login.php" method="post" >
      <div class="form-group">
         <h2>LOGIN</h2>
 
         <?php if (isset($_SESSION['login_error'])) { ?>
 
-            <p style="color:red"><?php echo $_SESSION['login_error']; ?></p>
+            <p class="error"><?php echo $_SESSION['login_error']; ?></p>
 
         <?php } ?>
 

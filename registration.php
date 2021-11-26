@@ -32,7 +32,7 @@ if (session_status()!==PHP_SESSION_ACTIVE)session_start();
 
         <?php if (isset($_SESSION['reg_error'])) { ?>
 
-            <p style="color:red"><?php echo $_SESSION['reg_error']; ?></p>
+            <p class="error"><?php echo $_SESSION['reg_error']; ?></p>
 
         <?php } ?>
 
