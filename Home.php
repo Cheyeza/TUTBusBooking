@@ -11,86 +11,89 @@
     $query="select * from student where studNo='".$_SESSION['studNo']."'";
     $result=mysqli_query($conn,$query);
     $row=mysqli_fetch_array($result);
+    $rowCount = 0;
 ?>
 
 <html>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device.width,initial-scale=1">
+<link rel="stylesheet"
+href="https://www.w3schools.com/w3css/3/w3.css">
     <head>
         <title>Home</title>
         
             </head>
+               
     <body>
 
     <?php include 'navigation.html'; ?>
+    
 
-        <div class="container">
-        <h2 style="color: rgb(240,62,51);"> Welcome back <?php echo $row['name'];?>  </h2>
+    <div class="container">
+    
+        <div class="slideshow-container">
 
-        <?php
-            $query="select * from view_bookings where studNo = '".$_SESSION['studNo']."'  order by time";
-            $result=mysqli_query($conn,$query) or die(mysqli_error($conn));
-            $rowCount = mysqli_num_rows($result);
-
-            
-            
-            if($rowCount > 0){
-        ?>
-        <table class="table table-striped thead-dark table-condensed">
-            <thead class="thead ">
-                <tr>
-                    <th>Departing From </th>
-                    <th>Traveling To </th>
-                    <th>Time</td>
-                    <th>Cancel</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            <!-- dummy bookings-->
-            <?php
-                   
-                    foreach($result as $row){
-            ?>
-                <tr>
-
-               
-            
-
-
-            
-                    <td> <?php echo $row['departure']; ?> </td>
-                    <td> <?php echo $row['destination'] ?> </td>
-                    <td> <?php echo $row['time'] ?> </td>
-                      
-                  
-                    <td>
-                        <form method="POST" action="process_cancellation.php"> 
-                            <input type="hidden" value="<?php echo $row['bookingId'];?>" name="bookingId"/>
-                            <input class="btn btn-danger" type="submit" value="Cancel"/>
-                        </form>
-                    </td>
-                </tr>
-                <?php  }
-
-                ?>
-                
-            <tbody>
-        </table>
-        <?php
-            }
-            else{
-
-
-                ?>
-
-<div class="alert alert-danger">
-    <span colspan="14">You have no booked trips</span>
+            <div class="mySlides">
+              <div class="numbertext">1 / 3</div>
+              <img src="img/stabus.jpeg" style="width:100%">
+              <div class="text">Caption Text</div>
             </div>
-
-<?php
+            
+            <div class="mySlides">
+              <div class="numbertext">2 / 3</div>
+              <img src="img/Amogelang 1.jpeg" style="width:100%">
+              <div class="text">Caption Two</div>
+            </div>
+            
+            <div class="mySlides">
+              <div class="numbertext">3 / 3</div>
+              <img  src="img/mathafeng.jpeg" style="width:100%">
+              <div class="text">Caption Three</div>
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            
+            </div>
+            <br>
+            
+            <div style="text-align:center">
+              <span class="dot" onclick="currentSlide(1)"></span> 
+              <span class="dot" onclick="currentSlide(2)"></span> 
+              <span class="dot" onclick="currentSlide(3)"></span> 
+            </div>
+            
+            <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+            
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
             }
-            ?>
-        
-        </div>
-        
-    </body>
+            
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              var dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";  
+              }
+              for (i = 0; i < dots.length; i++) {
+                  dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";  
+              dots[slideIndex-1].className += " active";
+            }
+            </script>
+         
+        </div>  
+        <?php include 'footer_bottom.html'; ?> 
+</body>
 </html>
