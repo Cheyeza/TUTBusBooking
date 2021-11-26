@@ -37,7 +37,7 @@ include "connect.php";
     <select name="location"  class="form-control" id="location">
         <?php
             
-            $query="select * from campus  where (select count(*) from schedule group by campus_From having campus_From = campusId) > 0 order by campusName";
+            $query="select * from campus  where (select count(*) from schedule group by campus_From having campus_From = campusId) > 0 and  (select count(*) from schedule where time >NOW()) > 0 order by campusName;";
 
             $result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 
