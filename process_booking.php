@@ -1,7 +1,7 @@
 <?php
 
     if (session_status()!==PHP_SESSION_ACTIVE)session_start();
-
+    $_SESSION['booking_error'] = null;
     if (!isset($_SESSION['studNo']))
     {
         header("Location: index.php");
@@ -18,5 +18,5 @@
     $sql = "INSERT INTO booking(scheduleId, studNo, confirmed) VALUES ($scheduleId, '".$_SESSION['studNo']."', 1) ;";
 
     mysqli_query($conn,$sql);
-    header("Location: Home.php");
+    header("Location: bookings.php");
 ?>
