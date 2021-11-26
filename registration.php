@@ -23,18 +23,18 @@ if (session_status()!==PHP_SESSION_ACTIVE)session_start();
 
 <div class="back">
 <div class="div-center">
+<div  class="page_heading">
+      <div class="container">
 
+          <h2 class="text-center">Register</h2>
+      </div>
+</div>
 
 <div class="container align-items-center" style="width: 50%">
      <form action="process_registration.php" method="post">
      <div class="form-group">
-        <h2>Register</h2>
+     
 
-        <?php if (isset($_SESSION['reg_error'])) { ?>
-
-            <p class="error"><?php echo $_SESSION['reg_error']; ?></p>
-
-        <?php } ?>
 
 
             <input type="text" class="form-control" name="studno" placeholder="Student Number" required><br>
@@ -75,18 +75,27 @@ if (session_status()!==PHP_SESSION_ACTIVE)session_start();
         <input type="text"  class="form-control" name="uname" placeholder="Username" require><br>
 
        
-        <input type="password"  class="form-control" name="password" placeholder="Password"><br> 
-
+        <input type="password"  class="form-control" name="password" placeholder="Password">
+        <br> 
+        <?php if (isset($_SESSION['reg_error'])) { ?>
+        <div class="alert alert-danger">
+            <p><?php echo $_SESSION['reg_error']; ?></p>
+        </div>
+        <?php } ?>
+        <div class="col-md-10 text-center ">
         <button type="submit" class="btn btn-primary">Register</button>
 
         </div>
+        </div>
      </form>
-
+     <br>
+     <div class="col-md-10 text-center ">
      <p> Already have an account? <a href="index.php"> click here </a> to login</p>
-
         </div>
         </div>
         </div>
+        </div>
+        <?php include 'footer_bottom.html'; ?>
 </body>
 
 </html>
